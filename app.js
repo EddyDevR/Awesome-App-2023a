@@ -40,7 +40,6 @@ const ip = '0.0.0.0';
 // arrancar el servidor 
 server.listen(port, ip, (err) => {
     console.log('Funcionando en https://localhost:3000');
-    console.log(`Funcionando en https://${process.env.IP}:3000`);
 });
 
 
