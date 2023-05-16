@@ -1,49 +1,38 @@
-// importar el module http 
-
-import http from 'http';
-
-// import express
+// Importando expressjs
 import express from 'express';
-
-// crear una instancia de express
-const app = express();
-
-// crear el servidor 
-const server = http.createServer(app);
-
-//creando middleware esa una funcion 
+// Crear una instancia de express
+const app = express(); // (req, res)=>{ UN MONTO DE CODIGO }
+// Registrar nuestro primer middleware
 app.use((req, res, next) => {
-    console.log('😊 Todo bien');
-    // invocando al siguiente middleware
+    console.log("⭐ Ejecutando el Middleware 1");
+    // Invocando al siguiente middleware
     next();
 });
-
-
 app.use((req, res, next) => {
-    console.log('✌ Registrando peticion');
-    console.log(` ${req.method}  = ${req.url}`);
+    console.log(`🪄 ${req.method} - ${req.url}`);
     next();
-})
-
-app.use((req, res) => {
-    console.log('😒 Respondiendo al cliente');
+});
+app.use('/about', (req, res) => {
     res.send(`
-    <h1>Hello World </h1>
-    <p>This is awesome app<p/>
-    `);
-})
-
-// Definir puertos 
-const port = 3000;
-const ip = '0.0.0.0';
-
-// arrancar el servidor 
-server.listen(port, ip, (err) => {
-    console.log('Funcionando en https://localhost:3000');
+  <h1 style="color: teal">About...</h1>
+  <p style="color: #555"> Esta pagina creada para aprender 
+  desarrollo web en Fullstack con JS</p>
+  `);
 });
-
-
-
-
-
-
+app.use((req, res) => {
+    console.log("⭐ Respondiendo al cliente");
+    res.send(`
+  <h1>Bienvenido a express</h1>
+  <p>Este es mi software</p>
+  `);
+});
+// Creando el servidor
+// const server = http.createServer(app);
+// Definir puertos
+const port = 3000;
+const ip = "0.0.0.0";
+// Arrancando el server
+app.listen(port, ip, (err) => {
+    console.log("📢 Sirviendo en http://localhost:3000");
+    console.log(`📢 Sirviendo en http://${process.env.IP}:${process.env.PORT}`);
+});
