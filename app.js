@@ -24,13 +24,10 @@ app.use('/about', (req, res) => {
 });
 
 // GET / adyd product  
-app.use('/add-product', (req, res, next) => {
-  if (req.method === 'POST') {
-    next();
-  } else {
-    console.log(`sirviendo el formulario`);
-    // sirviendo el formlario
-    res.send(`
+app.get('/add-product', (req, res, next) => {
+  console.log(`sirviendo el formulario`);
+  // sirviendo el formlario
+  res.send(`
     <form action='/add-product' method='POST'>
     <label for='title'>Title</label>
     <input type='text' name='title'>
@@ -42,12 +39,11 @@ app.use('/add-product', (req, res, next) => {
     </form>
     `);
 
-  }
 
 });
 
 // POST /add-product
-app.use('/add-product', (req, res) => {
+app.post('/add-product', (req, res) => {
   //  extraccion de los datos de la peticion 
 
   for (const prop in req.body) {
