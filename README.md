@@ -1,2 +1,2 @@
-# Awesome-App-2023a
-Proyecto de express-nodejs 
+# awesome-app-2023a
+Proyecto de aprendizaje de express.js
