@@ -15,13 +15,13 @@ const app = express(); // (req,res) => {UN MONTON DE CÓDIGO}
 app.use(express.urlencoded({ extended: true }));
 
 // Se agrega ruta de administrador
-app.use(adminRouter);
+app.use('/admin', adminRouter);
 // Se agrega la ruta shop 
 app.use(shopRouter);
 
 // registrando middleware para el error 404
 app.use((req, res) => [
-res.status(httpStatus.NOT_FOUND).sendFile(path.resolve('views','404.html'))
+    res.status(httpStatus.NOT_FOUND).sendFile(path.resolve('views', '404.html'))
 ])
 
 // Definir puertos
