@@ -13,8 +13,8 @@
     "url": "git+https://github.com/Abigail-Obrajero1/awesome-app-2023a.git"
   },
   "engines": {
-    "node": "20.0.0",
-    "npm": "9.6.4"
+    "node": "18.16.0",
+    "npm": "9.5.1"
   },
   "keywords": [
     "Express",
@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/Abigail-Obrajero1/awesome-app-2023a#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "http-status": "^1.6.2"
   }
 }
