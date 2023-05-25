@@ -1,23 +1,22 @@
 // Importando el enrutador de express
 import { Router } from 'express';
+// import path 
+import path from 'path';
+
+// importado ROOT_DIR
+import { ROOT_DIR } from '../helpers/paths.js';
 
 // Creando una instancia del enrutador de express
 const router = Router();
 
+
 // GET /admin/add-product
 router.get('/add-product', (req, res, next) => {
-  // Si la petición es post pasamos el siguiente
-  // Middleware
-  if (req.method === "POST") return next();
-
   // Servimos el formulario
   console.log("📢 Sirviendo formulario...");
-  res.send(`
-  <form action="/admin/add-product" method="POST">
-    <input type="text" name="title">
-    <button type="submit">Add product</button>
-  </form>
-  `);
+
+  console.log(`ROOT_DIR: ${ROOT_DIR}`);
+  res.sendFile(path.join(ROOT_DIR, 'views', 'add-product.html'));
 });
 
 // POST /admin/add-product
