@@ -11,6 +11,7 @@ import { engine } from 'express-handlebars';
 import adminRouter from './routes/admin.routes.js';
 import shopRouter from './routes/shop.routes.js';
 
+
 // importando root dir , primer middleware en ser registrado deber ser el servidor de estaticos
 import { ROOT_DIR } from './helpers/paths.js';
 
