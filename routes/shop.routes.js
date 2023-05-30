@@ -11,7 +11,8 @@ const router = Router();
 router.get('/', (req, res) => {
     console.log("📢 Sirviendo la ruta '/'");
     // Se contesta al server
-    res.sendFile(path.resolve('views', 'shop.html'));
+    res.render('shop');
+    // res.render('shop', { layout: false });
 });
 
 // GET /about
