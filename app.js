@@ -1,32 +1,30 @@
-// Importar express
+// Importando Express
 import express from 'express';
-
-// Importando http-status
 import httpStatus from 'http-status';
 
 // Template Engine
 import { engine } from 'express-handlebars';
 
-// Importando el enrutador 
-import adminRouter from './routes/admin.routes.js';
-import shopRouter from './routes/shop.routes.js';
+// Importando el enrutador
+import adminRouter from './routes/admin.route.js';
+import shopRouter from './routes/shop.route.js';
 
+// Importando el directorio raiz
+import { ROOT_DIR } from './helpers/paths.js'
 
-// importando root dir , primer middleware en ser registrado deber ser el servidor de estaticos
-import { ROOT_DIR } from './helpers/paths.js';
-
-// importando path
+// Se importa path
 import path from 'path';
 
-// Crear una instancia de express
-const app = express(); // (req,res) => {UN MONTON DE CÓDIGO}
+// Creando la instancia de express
+// que basicamente es un middleware
+const app = express();
 
 // Se crea instancia del template engine
 const hbsTemplateEngine = engine({
-    // Extensión de los archivos de plantillas
-    extname: '.hbs',
-    // Nombre del diseño por defecto
-    defaultLayout: 'main',
+  // Extensión de los archivos de plantillas
+  extname: '.hbs',
+  // Nombre del diseño por defecto
+  defaultLayout: 'main',
 });
 
 // TE1. Se registra en la instancia de express
@@ -38,32 +36,30 @@ app.set('view engine', 'hbs');
 // TE3. Se establece la ruta de las vistas
 app.set('views', path.resolve('views'));
 
-
-
-// Middleware del parseo de datos del cliente
+// Se registra el middleware del body-parser
 app.use(express.urlencoded({ extended: true }));
 
-// se registra el middleware para servidor archivos estaticos
+// Se registra el middleware para el servidor
+// de archivos estaticos
 app.use(express.static(path.join(ROOT_DIR, 'public')));
-
-
-
 
 // Se agrega ruta de administrador
 app.use('/admin', adminRouter);
-// Se agrega la ruta shop 
+// Se agrega ruta shop
 app.use(shopRouter);
 
-// registrando middleware para el error 404
-app.use((req, res) => [
-    res.status(httpStatus.NOT_FOUND).sendFile(path.resolve('views', '404.html'))
-])
+// Registrando el middleware para el error
+// 404
+app.use((req, res, next) => {
+  res.status(httpStatus.NOT_FOUND)
+  .sendFile(path.resolve('views','404.html'))
+});
 
-// Definir puertos
+// Definiendo puertos
 const port = 3000;
-const ip = "0.0.0.0";
+const ip = "0.0.0.0"
 
-// Arrancar el servidor 
-app.listen(port, ip, (error) => {
-    console.log(`📢 Sirviendo en http://localhost:${port}`);
+// Arrancando el servidor
+app.listen(port, ip, () => {
+  console.log(`🤖 Sirviendo en http://localhost:${port}`);
 });
