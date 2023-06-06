@@ -53,14 +53,10 @@ app.use('/admin', adminRouter);
 app.use(shopRouter);
 
 // Middleware para manejar el error 404
-app.use((req, res, next) => {
-  handle404Error(req, res);
-});
+app.use(handle404Error);
 
 // Middleware para manejar error 500
-app.use((err, req, res, next) => {
-  handle500Error(err, req, res, next);
-});
+app.use(handle500Error);
 
 // Definiendo puertos
 const port = 3000;
