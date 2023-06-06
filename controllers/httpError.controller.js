@@ -12,7 +12,7 @@ export const handle404Error = (req, res) => {
 export const handleOtherErrors = (err, req, res, next) => {
     console.error("Error 500"); // Imprime el error en la consola para propósitos de depuración
 
-    res.status(500).render('error', {
+    res.status(500).render('error500', {
         errorCode: 500,
     });
 };

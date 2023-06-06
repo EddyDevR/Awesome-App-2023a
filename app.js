@@ -52,8 +52,6 @@ app.use('/admin', adminRouter);
 // Se agrega ruta shop
 app.use(shopRouter);
 
-
-
 // Middleware para manejar el error 404
 app.use((req, res, next) => {
   handle404Error(req, res);
@@ -63,8 +61,6 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   handleOtherErrors(err, req, res, next);
 });
-
-
 
 // Definiendo puertos
 const port = 3000;
