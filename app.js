@@ -57,7 +57,7 @@ app.use((req, res, next) => {
   handle404Error(req, res);
 });
 
-// Middleware para manejar otros errores
+// Middleware para manejar error 500
 app.use((err, req, res, next) => {
   handleOtherErrors(err, req, res, next);
 });
