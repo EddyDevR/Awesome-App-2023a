@@ -16,7 +16,7 @@ import { ROOT_DIR } from './helpers/paths.js'
 import path from 'path';
 
 
-import { handle404Error, handleOtherErrors } from './controllers/httpError.controller.js';
+import { handle404Error, handle500Error } from './controllers/httpError.controller.js';
 
 
 // Creando la instancia de express
@@ -59,7 +59,7 @@ app.use((req, res, next) => {
 
 // Middleware para manejar error 500
 app.use((err, req, res, next) => {
-  handleOtherErrors(err, req, res, next);
+  handle500Error(err, req, res, next);
 });
 
 // Definiendo puertos

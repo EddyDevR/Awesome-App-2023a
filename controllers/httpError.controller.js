@@ -9,7 +9,7 @@ export const handle404Error = (req, res) => {
 };
 
 // Función para error 500
-export const handleOtherErrors = (err, req, res, next) => {
+export const handle500Error = (err, req, res, next) => {
     console.error("Error 500"); // Imprime el error en la consola para propósitos de depuración
 
     res.status(500).render('error500', {
