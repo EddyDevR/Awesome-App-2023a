@@ -15,6 +15,10 @@ import { ROOT_DIR } from './helpers/paths.js'
 // Se importa path
 import path from 'path';
 
+
+import { handle404Error, handleOtherErrors } from './controllers/httpError.controller.js';
+
+
 // Creando la instancia de express
 // que basicamente es un middleware
 const app = express();
@@ -48,12 +52,19 @@ app.use('/admin', adminRouter);
 // Se agrega ruta shop
 app.use(shopRouter);
 
-// Registrando el middleware para el error
-// 404
+
+
+// Middleware para manejar el error 404
 app.use((req, res, next) => {
-  res.status(httpStatus.NOT_FOUND)
-  .sendFile(path.resolve('views','404.html'))
+  handle404Error(req, res);
 });
+
+// Middleware para manejar otros errores
+app.use((err, req, res, next) => {
+  handleOtherErrors(err, req, res, next);
+});
+
+
 
 // Definiendo puertos
 const port = 3000;
