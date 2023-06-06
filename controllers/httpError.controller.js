@@ -4,7 +4,6 @@
 export const handle404Error = (req, res) => {
     res.status(404).render('error', {
         errorCode: 404,
-        errorMessage: 'La página que estás buscando no existe.'
     });
 };
 
@@ -14,6 +13,5 @@ export const handleOtherErrors = (err, req, res, next) => {
 
     res.status(500).render('error', {
         errorCode: 500,
-        errorMessage: 'Ocurrió un error en el servidor. Por favor, inténtalo de nuevo más tarde.'
     });
 };
